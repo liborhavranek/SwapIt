@@ -1,0 +1,34 @@
+<div class="sidebar-container">
+    <div class="sidebar">
+        <h4 class="mx-2">Kategorie</h4>
+
+        {% macro render_sidebar_category(category_info, selected_category_id, ancestor_ids) %}
+            {% set category = category_info.category %}
+            {% set is_active = (category.id == selected_category_id) %}
+            {% set is_ancestor = (category.id in ancestor_ids) %}
+            {% if category_info.subcategories|length > 0 %}
+                <div class="category-item">
+                    <a href="{{ url_for('index_bp.dashboard', category_id=category.id) }}"
+                       class="{% if is_active %}active{% endif %}">
+                        <i class="{{ category.icon }}"></i> {{ category.name }}
+                    </a>
+                    <span class="dropdown-toggle {% if is_active or is_ancestor %}active{% endif %}"></span>
+                </div>
+                <div class="dropdown-container" {% if is_active or is_ancestor %}style="display: block;"{% endif %}>
+                    {% for subcategory_info in category_info.subcategories %}
+                        {{ render_sidebar_category(subcategory_info, selected_category_id, ancestor_ids) }}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <a href="{{ url_for('index_bp.dashboard', category_id=category.id) }}"
+                   class="{% if is_active %}active{% endif %}">
+                    <i class="{{ category.icon }}"></i> {{ category.name }}
+                </a>
+            {% endif %}
+        {% endmacro %}
+
+        {% for category_info in categories_tree %}
+            {{ render_sidebar_category(category_info, selected_category.id if selected_category else None, ancestor_ids) }}
+        {% endfor %}
+    </div>
+</div>

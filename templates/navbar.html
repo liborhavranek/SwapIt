@@ -1,0 +1,24 @@
+  <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="/">
+              <span class="swap-green">Swap</span><span class="it-black">It</span>
+          </a>
+            <ul class="navbar-nav ms-auto">
+                {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="">{{ current_user.username }} </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('auth_bp.logout') }}">Odhlásit</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('auth_bp.login') }}">Přihlásit</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('auth_bp.registration') }}">Registrovat</a>
+                    </li>
+                {% endif %}
+            </ul>
+      </div>
+  </nav>

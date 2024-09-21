@@ -1,0 +1,134 @@
+.sidebar-container {
+    width: 250px;
+    padding: 15px;
+    margin-top: 20px;
+    margin-left: 15px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #1abc9c, #2ecc71); /* Výraznější moderní gradient */
+    position: fixed;
+    top: 90px;
+    left: 15px;
+    bottom: 15px;
+    overflow-y: auto;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* Výraznější a modernější stín */
+    z-index: 999;
+}
+
+.sidebar-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar-container::-webkit-scrollbar-track {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.sidebar-container::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.sidebar a {
+    display: block;
+    color: #e0f7fa; /* Jemná světle modrá, která se hodí k pozadí */
+    padding: 12px 15px;
+    text-decoration: none;
+    font-weight: 500; /* Normální písmo */
+    border-radius: 10px;
+    transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.sidebar a:hover {
+    color: #ffffff; /* Zářivě bílá barva na hover */
+    transform: translateX(10px); /* Výraznější pohyb na hover */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Jemnější zářivý efekt na hover */
+}
+
+
+.sidebar .dropdown-container {
+    display: none;
+    padding-left: 15px;
+}
+
+.sidebar .dropdown-toggle::after {
+    content: '\276F'; /* Široká šipka dolů */
+    font-size: 1.1rem;
+    float: right;
+    line-height: 1;
+    color: #e0f7fa; /* Jemná světle modrá barva */
+    font-weight: 300;
+    transition: transform 0.3s ease, color 0.3s ease;
+    transform: rotate(-90deg);
+    display: inline-block;
+    vertical-align: middle;
+    border: none; /* Odstranění případného rámečku */
+    background: none; /* Odstranění případného pozadí */
+    box-shadow: none; /* Odstranění případného stínu */
+}
+
+.sidebar .dropdown-toggle:hover::after {
+    color: #ffffff; /* Zářivě bílá na hover */
+}
+
+.sidebar .dropdown-toggle.active::after {
+    transform: rotate(90deg); /* Otočení šipky nahoru */
+    color: #ffffff; /* Zářivě bílá, když je aktivní */
+}
+
+
+.category-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.category-item a {
+    flex-grow: 1;
+    color: #e0f7fa;
+    text-decoration: none;
+    padding: 12px 15px;
+    font-weight: 500;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.category-item a:hover {
+    color: #ffffff;
+    transform: translateX(10px);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* Styly pro šipku */
+.category-item .dropdown-toggle {
+    cursor: pointer;
+    padding: 12px 15px;
+    color: #e0f7fa;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.category-item .dropdown-toggle::after {
+    content: '\276F'; /* Široká šipka */
+    display: inline-block;
+    transform: rotate(-90deg);
+}
+
+.category-item .dropdown-toggle.active::after {
+    transform: rotate(90deg); /* Otočení šipky při rozbalení */
+}
+
+.category-item .dropdown-toggle:hover {
+    color: #ffffff;
+}
+
+/* Ostatní styly zůstávají stejné */
+.sidebar .dropdown-container {
+    display: none;
+    padding-left: 15px;
+}
+
+
+
+

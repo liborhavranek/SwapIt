@@ -1,0 +1,263 @@
+
+        /* Fonty a základní nastavení */
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('{{ url_for('static', filename='hands1.jpg') }}');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 150px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-section .logo {
+            margin-bottom: 20px;
+        }
+
+
+        .swap-text {
+            font-size: 8rem;
+            font-weight: bold;
+            line-height: 1.2;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .swap-green {
+            color: #19a974;
+        }
+
+        .it-black {
+            color: #000000;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-section .btn-primary {
+            background-color: #19a974;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-section .btn-primary:hover {
+            background-color: #148f65;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-section .btn-outline-light {
+            border-color: #19a974;
+            color: #19a974;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-section .btn-outline-light:hover {
+            background-color: #19a974;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        /* How It Works Section */
+        .how-it-works-section {
+            padding: 80px 0;
+            text-align: center;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .how-it-works-section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 3.2rem;
+        }
+
+        .how-it-works-section .step {
+            margin-bottom: 30px;
+        }
+
+        .how-it-works-section .step img {
+            width: 80px;
+            margin-bottom: 20px;
+            filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3));
+            color: #19a974;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            background-color: #f8f9fa;
+            padding: 80px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefits-section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 3.2rem;
+        }
+
+        .benefits-section .card {
+            border: none;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            background-color: #19a974;
+            color: white;
+            border-radius: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .benefits-section .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Categories Section */
+        .categories-section {
+            padding: 80px 0;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .categories-section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 3.2rem;
+        }
+
+        .categories-section img {
+            width: 100%;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .categories-section img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .reviews-section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 3.2rem;
+        }
+
+        /* Signup Section */
+        .signup-section {
+            padding: 80px 0;
+            text-align: center;
+            background-color: #19a974;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .signup-section .btn-primary {
+            background-color: white;
+            color: #19a974;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .signup-section .btn-primary:hover {
+            background-color: #148f65;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 0;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-section .accordion-button {
+            font-weight: bold;
+            color: #19a974;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        footer a {
+            color: white;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #19a974;
+        }
+
+        footer .social-icons a {
+            font-size: 1.5rem;
+            margin: 0 10px;
+            color: #19a974;
+            transition: color 0.3s ease;
+        }
+
+        footer .social-icons a:hover {
+            color: white;
+        }
+
+        /* Parallax effect for hero section */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .hero-section .container {
+            position: relative;
+            z-index: 2;
+        }
