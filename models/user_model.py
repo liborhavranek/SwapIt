@@ -11,7 +11,8 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
-    role = db.Column(db.String(50), nullable=False, default=Role.USER)
+    # TODO opravit to na user admin je pouye pro účely testování abych nemusel měnit roli pokaždé v DB
+    role = db.Column(db.String(50), nullable=False, default=Role.ADMIN)
 
     # Osobní údaje
     first_name = db.Column(db.String(50), nullable=True)
