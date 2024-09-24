@@ -202,6 +202,33 @@
                         </div>
                     </div>
                     <!-- Další produkty... -->
+
+                    {% for product in products %}
+                        <div class="product-card">
+                            <div class="position-relative">
+                                {% if product.images and product.images|length > 0 %}
+                                    <img src="{{ url_for('static', filename=product.images[0].image_url) }}" alt="{{ product.title }}">
+                                {% else %}
+                                    <img src="{{ url_for('static', filename='default_image.png') }}" alt="{{ product.title }}">
+                                {% endif %}
+                                <i class="bi bi-heart heart-icon"></i>
+                            </div>
+                            <div class="product-card-body">
+                                <h5 class="product-title">{{ product.title }}</h5>
+                                <p class="product-description">{{ product.description }}</p>
+                                <ul class="product-details">
+                                    <li><strong>Pořizovací cena:</strong> {{ product.purchase_price }} Kč</li>
+                                    <li><strong>Cena za výměnu:</strong> {{ product.swap_price }} Kč</li>
+                                    <li><strong>Místo výměny:</strong> {{ product.city }}</li>
+                                    <li><strong>Stav:</strong> {{ product.condition }}</li>
+                                    <li><strong>Dostupnost:</strong> {{ product.availability }}</li>
+                                </ul>
+                                <button class="btn-swap">Swapnout</button>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+
                 </div>
             </div>
         </div>

@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request
 
 from blueprints.admin_blueprint import build_category_tree
 from models.category_model import Category
+from models.product_model import Product
 
 index_bp = Blueprint('index_bp', __name__)
 
@@ -26,6 +27,7 @@ def get_category_ancestors(category):
 
 @index_bp.route('/dashboard', methods=['GET'])
 def dashboard():
+    products = Product.query.all()
     category_id = request.args.get('category_id', type=int)
     selected_category = None
     ancestor_ids = []
@@ -44,7 +46,8 @@ def dashboard():
                            categories=categories,
                            categories_tree=categories_with_subcategories,
                            selected_category=selected_category,
-                           ancestor_ids=ancestor_ids)
+                           ancestor_ids=ancestor_ids,
+                           products=products)
 
 
 
