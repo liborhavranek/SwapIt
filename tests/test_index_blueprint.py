@@ -1,5 +1,5 @@
 import unittest
-from app import app, db, socketio
+from app import app, db
 
 
 class AppRoutesTestCase(unittest.TestCase):
