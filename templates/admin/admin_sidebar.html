@@ -1,24 +1,22 @@
     <div class="sidebar-container">
         <div class="sidebar">
             <a href="#" class="dropdown-toggle"> <i class="bi bi-grid-3x3-gap-fill"></i> Kategorie</a>
-            <div class="dropdown-container">
-                <a href="/create_category">Vytvořit kategorii</a>
-                <a href="/category_list">Seznam kategorií</a>
-            </div>
+                <div class="dropdown-container">
+                    <a href="/create_category">Vytvořit kategorii</a>
+                    <a href="/category_list">Seznam kategorií</a>
+                </div>
 
-        <a href="#" class="dropdown-toggle"> <i class="bi bi-apple"></i>Značky</a>
-            <div class="dropdown-container">
-                <a href="/create_brand">Vytvořit značku</a>
-                <a href="/brand_list">Seznam značek</a>
-            </div>
+            <a href="#" class="dropdown-toggle"> <i class="bi bi-apple"></i>Značky</a>
+                <div class="dropdown-container">
+                    <a href="/create_brand">Vytvořit značku</a>
+                    <a href="/brand_list">Seznam značek</a>
+                </div>
 
+            <a href="/product_list"> <i class="bi bi-box-seam"></i> Produkty</a>
 
-<form action="{{ url_for('admin_bp.create_sample_data') }}" method="POST">
-    <button type="submit" class="btn btn-success">Vytvořit sadu kategorií a značek</button>
-</form>
-
-
-
+            <form action="{{ url_for('admin_bp.create_sample_data') }}" method="POST">
+                <button type="submit" class="btn btn-success">Vytvořit sadu kategorií a značek</button>
+            </form>
 
         </div>
     </div>

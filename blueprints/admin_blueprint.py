@@ -5,6 +5,7 @@ from flask import Blueprint, render_template, request, session, current_app, fla
 from extensions import db
 from models.brand_model import Brand
 from models.category_model import Category
+from models.product_model import Product
 
 admin_bp = Blueprint('admin_bp', __name__)
 
@@ -238,6 +239,13 @@ def delete_brand(brand_id):
 
     flash('Značka a všechny její podznačky byly úspěšně smazány.', 'success')
     return redirect(url_for('admin_bp.brand_list'))
+
+
+@admin_bp.route('/product_list')
+def product_list():
+    products = Product.query.all()
+    return render_template('admin/products/product_list.html', products=products)
+
 
 
 @admin_bp.route('/create_sample_data', methods=['POST'])
