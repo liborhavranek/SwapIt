@@ -1,18 +1,10 @@
 import unittest
-import time
-from app import app, db
+from app import app
+from tests.utils.page_class import TestViewCase
 from tests.utils.template_testing import captured_templates
 
 
-class TestHomepageViewTestCase(unittest.TestCase):
-
-    def setUp(self):
-        time.sleep(0.1)
-        app.config['TESTING'] = True
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
-        self.app = app.test_client()
-        with app.app_context():
-            db.create_all()
+class TestHomepageViewTestCase(TestViewCase):
 
     def test_homepage_status_code(self):
         response = self.app.get('/')

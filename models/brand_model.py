@@ -13,3 +13,9 @@ class Brand(db.Model):
     icon = db.Column(db.String(255), nullable=True)
 
     parent = relationship('Brand', remote_side=[id], backref=backref('subbrands', lazy='dynamic', cascade='all, delete-orphan', order_by="Brand.order"))
+
+    def get_subbrands(self):
+        return self.subbrands.all()
+
+    def get_parent(self):
+        return self.parent

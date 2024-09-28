@@ -17,5 +17,8 @@ repos:
         types: [python]
         args:
           - --init-hook="import sys; sys.path.append('/Users/liborhavranek/Documents/PycharmProjects/SwapIt/venv/lib/python3.11/site-packages')"
-          - --disable=C0114,C0115,C0116
-          - --disable=C0301
+#          - --reports=y
+          - --score=y
+          - --disable=C0114,C0115,C0116 # soubor trida a class musí mít svuj vlastní docstring s popisem
+          - --disable=C0301 # delka radku
+          - --disable=W0511 # Nebude hlásit todůčka

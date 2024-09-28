@@ -14,7 +14,6 @@ class BaseTestCase(unittest.TestCase):
         self.app_context.push()
         db.create_all()
         self.client = self.app.test_client()
-        time.sleep(0.1)
 
     def tearDown(self):
         db.session.remove()

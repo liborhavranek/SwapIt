@@ -1,15 +1,5 @@
 import unittest
-import time
-from app import app
-
-
-class BaseTestCase(unittest.TestCase):
-
-    def setUp(self):
-        time.sleep(0.1)
-        app.config['TESTING'] = True
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
-        self.client = app.test_client()
+from tests.utils.register_and_login_test_class import BaseTestCase
 
 
 class BaseTemplateRenderingTestCase(BaseTestCase):

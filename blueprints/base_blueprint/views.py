@@ -1,8 +1,8 @@
+from flask import render_template, request, Response
 from flask.views import MethodView
 from helpers.product_helpers import get_all_products
-from flask import render_template, request, Response
-from blueprints.admin_blueprint import build_category_tree
 from helpers.category_helpers import get_all_categories, get_selected_category_and_ancestors
+from blueprints.admin_blueprint import build_category_tree
 
 
 class BaseView(MethodView):

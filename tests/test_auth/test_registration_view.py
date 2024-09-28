@@ -1,50 +1,25 @@
-import time
 import unittest
-
-from flask import session
-from flask_wtf.csrf import generate_csrf
-
-from app import db, create_app
 from models.user_model import User
 from tests.utils.get_csrf_token import get_csrf_token_from_response
+from tests.utils.register_and_login_test_class import RegisterAndLoginTestCase
 from tests.utils.template_testing import captured_templates
 
 
-class TestRegistrationViewTestCase(unittest.TestCase):
+class TestRegistrationViewTestCase(RegisterAndLoginTestCase):
 
-    def setUp(self):
-        time.sleep(0.1)
-        self.app, _ = create_app(testing=True, wtf_csrf_enabled=True)
-        self.app_context = self.app.app_context()
-        self.app_context.push()
-        db.create_all()
-        self.client = self.app.test_client()
-
-    def tearDown(self):
-        db.session.remove()
-        db.drop_all()
-        self.app_context.pop()
-
-    def get_csrf_token(self):
-        with self.app.test_request_context():
-            csrf_token = generate_csrf()
-            session['csrf_token'] = csrf_token
-            return csrf_token
-
-    def user_with_success_data(self, client, first_name='John', last_name='Doe', username='johndoe',
-                               email='john.doe@example.com', password='password123',
-                               confirm_password='password123'):
+    def user_with_success_data(self, client, **kwargs):
         response = client.get('/registration')
         csrf_token = get_csrf_token_from_response(response)
-        return client.post('/registration', data={
-            'first_name': first_name,
-            'last_name': last_name,
-            'username': username,
-            'email': email,
-            'password': password,
-            'confirm_password': confirm_password,
+        data = {
+            'first_name': kwargs.get('first_name', 'John'),
+            'last_name': kwargs.get('last_name', 'Doe'),
+            'username': kwargs.get('username', 'johndoe'),
+            'email': kwargs.get('email', 'john.doe@example.com'),
+            'password': kwargs.get('password', 'password123'),
+            'confirm_password': kwargs.get('confirm_password', 'password123'),
             'csrf_token': csrf_token
-        }, follow_redirects=True)
+        }
+        return client.post('/registration', data=data, follow_redirects=True)
 
     def test_registration_status_code(self):
         response = self.client.get('/registration')
@@ -118,6 +93,23 @@ class TestRegistrationViewTestCase(unittest.TestCase):
         with self.client as c:
             response = self.user_with_success_data(c, first_name='John', last_name='Doe')
             self.assertEqual(response.status_code, 200, "Validace pro správné příjmení neměla vyhodit chybu.")
+
+
+class TestRegistrationViewSecondTestCase(RegisterAndLoginTestCase):
+
+    def user_with_success_data(self, client, **kwargs):
+        response = client.get('/registration')
+        csrf_token = get_csrf_token_from_response(response)
+        data = {
+            'first_name': kwargs.get('first_name', 'John'),
+            'last_name': kwargs.get('last_name', 'Doe'),
+            'username': kwargs.get('username', 'johndoe'),
+            'email': kwargs.get('email', 'john.doe@example.com'),
+            'password': kwargs.get('password', 'password123'),
+            'confirm_password': kwargs.get('confirm_password', 'password123'),
+            'csrf_token': csrf_token
+        }
+        return client.post('/registration', data=data, follow_redirects=True)
 
     def test_registration_form_submission_with_existing_username(self):
         with self.client as c:

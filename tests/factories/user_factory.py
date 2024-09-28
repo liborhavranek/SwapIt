@@ -1,44 +1,47 @@
-from faker import Faker
 from datetime import datetime
-from models.user_model import User
 import random
 import string
 
+from faker import Faker
+from models.user_model import User
 
 fake = Faker()
 
 
 def random_string(length=10):
-    """Generuje náhodný řetězec dané délky."""
     return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
 
 
-def user_factory(username='user1', email='user1@example.com', password='password123',
-                 first_name='John', last_name='Doe', role='user', status='active',
-                 date_of_birth=None, gender=None, profile_picture=None, bio=None,
-                 location=None, phone_number=None, website=None, join_date=None, last_login=None, last_ip=None):
-
-    return User(
-        username=username,
-        email=email,
-        password=password,
-        first_name=first_name,
-        last_name=last_name,
-        role=role,
-        status=status,
-        date_of_birth=date_of_birth,
-        gender=gender,
-        profile_picture=profile_picture,
-        bio=bio,
-        location=location,
-        phone_number=phone_number,
-        website=website,
-        join_date=join_date,
-        last_login=last_login,
-        last_ip=last_ip
-    )
+def create_user_with_defaults(**kwargs):
+    defaults = {
+        'username': 'user1',
+        'email': 'user1@example.com',
+        'password': 'password123',
+        'first_name': 'John',
+        'last_name': 'Doe',
+        'role': 'user',
+        'status': 'active',
+        'date_of_birth': None,
+        'gender': None,
+        'profile_picture': None,
+        'bio': None,
+        'location': None,
+        'phone_number': None,
+        'website': None,
+        'join_date': datetime.utcnow(),
+        'last_login': None,
+        'last_ip': None
+    }
+    defaults.update(kwargs)
+    return defaults
 
 
+def user_factory(**kwargs):
+    user_data = create_user_with_defaults(**kwargs)
+    return User(**user_data)
+
+
+# Pomocné funkce pro specifické typy uživatelů, využívající `user_factory`
 def create_admin_user(username='admin', email='admin@example.com', password='adminpass'):
     return user_factory(username=username, email=email, password=password, role='admin', first_name='Admin', last_name='User')
 

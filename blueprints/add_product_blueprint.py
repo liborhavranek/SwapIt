@@ -1,11 +1,11 @@
-from blueprints.product_functions.save_product import save_product
+from flask import Blueprint, render_template, request, flash, redirect, url_for, jsonify
+from flask_login import login_required, current_user
 from extensions import db
 from models.brand_model import Brand
 from models.category_model import Category
-from flask_login import login_required, current_user
+from blueprints.product_functions.save_product import save_product
 from blueprints.product_functions.process_image import process_images
 from blueprints.product_functions.product_validation import validate_product_form
-from flask import Blueprint, render_template, request, flash, redirect, url_for, jsonify
 
 add_product_bp = Blueprint('add_product_bp', __name__)
 

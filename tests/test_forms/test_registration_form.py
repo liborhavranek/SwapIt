@@ -80,6 +80,9 @@ class RegistrationFormTestCase(RegisterAndLoginTestCase):
             form = RegistrationForm(confirm_password='password123', csrf_token=csrf_token)
             self.assertEqual(form.confirm_password.data, 'password123', "Pole 'confirm_password' by mělo obsahovat hodnotu 'password123'.")
 
+
+class RegistrationFormValidationTestCase(RegisterAndLoginTestCase):
+
     def test_validate_username_unique_success_with_csrf(self):
         with self.app.test_request_context():
             csrf_token = self.get_csrf_token()
@@ -198,6 +201,9 @@ class RegistrationFormTestCase(RegisterAndLoginTestCase):
         with self.app.test_request_context():
             form = RegistrationForm(password='password123', confirm_password='password123')
             form.password.validators[1](form, form.password)
+
+
+class RegistrationFormNamesValidationTestCase(RegisterAndLoginTestCase):
 
     def test_first_name_empty_failure(self):
         with self.app.test_request_context():

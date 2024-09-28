@@ -91,7 +91,7 @@ class AppConfigTestCase(unittest.TestCase):
     @patch('flask.Flask.register_blueprint')
     def test_register_admin_blueprint(self, mock_register_blueprint):
         from app import register_blueprint
-        from blueprints.admin_blueprint import admin_bp
+        from blueprints.admin_blueprint_not_working import admin_bp
         register_blueprint(app)
         mock_register_blueprint.assert_any_call(admin_bp)
 

@@ -2,7 +2,7 @@ import unittest
 import time
 from flask import session
 from flask_wtf.csrf import generate_csrf
-from app import create_app
+from app import create_app, app
 from extensions import db
 
 
@@ -25,3 +25,12 @@ class RegisterAndLoginTestCase(unittest.TestCase):
             csrf_token = generate_csrf()
             session['csrf_token'] = csrf_token
             return csrf_token
+
+
+class BaseTestCase(unittest.TestCase):
+
+    def setUp(self):
+        time.sleep(0.1)
+        app.config['TESTING'] = True
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
+        self.client = app.test_client()

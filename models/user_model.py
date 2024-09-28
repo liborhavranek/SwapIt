@@ -1,13 +1,12 @@
-from extensions import db
 from datetime import datetime
 from flask_login import UserMixin
+from extensions import db
 from models.user_role import Role
 
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
-    # Definice všech sloupců
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
@@ -27,27 +26,18 @@ class User(db.Model, UserMixin):
     last_login = db.Column(db.DateTime, nullable=True)
     last_ip = db.Column(db.String(45), nullable=True)
 
-    def __init__(self, username, email, password, first_name=None, last_name=None, role=Role.ADMIN, status='active',
-                 date_of_birth=None, gender=None, profile_picture=None, bio=None, location=None,
-                 phone_number=None, website=None, join_date=None, last_login=None, last_ip=None):
-
+    def __init__(self, username, email, password, **kwargs):
         self.username = username
         self.email = email
         self.password = password
-        self.first_name = first_name
-        self.last_name = last_name
-        self.role = role
-        self.status = status
-        self.date_of_birth = date_of_birth
-        self.gender = gender
-        self.profile_picture = profile_picture
-        self.bio = bio
-        self.location = location
-        self.phone_number = phone_number
-        self.website = website
-        self.join_date = join_date if join_date else datetime.utcnow()
-        self.last_login = last_login
-        self.last_ip = last_ip
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
+    def get_full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
+    def is_admin(self):
+        return self.role == Role.ADMIN
 
     def __repr__(self):
         return f'<User {self.username}>'

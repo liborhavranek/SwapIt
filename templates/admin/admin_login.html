@@ -17,13 +17,19 @@
                 <span class="swap-green">Swap</span> <span class="it-black">It</span>
             </h1>
             <h2>Přihlášení do administrace</h2>
+
+            <!-- Použití Flask-WTF Formuláře -->
             <form method="POST" action="{{ url_for('admin_bp.admin_dashboard') }}">
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                {{ form.hidden_tag() }}
                 <div class="mb-3">
-                    <input type="password" class="form-control" id="password" name="access_password" placeholder="Heslo">
+                    {{ form.access_password.label }}
+                    {{ form.access_password(class="form-control", id="password", placeholder="Heslo") }}
                 </div>
-                <button type="submit" class="btn btn-primary">Přihlásit se</button>
+                <div class="mb-3">
+                    {{ form.submit(class="btn btn-primary") }}
+                </div>
             </form>
+
         </div>
     </section>
 

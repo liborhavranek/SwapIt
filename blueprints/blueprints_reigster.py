@@ -1,6 +1,6 @@
+from flask import Blueprint
 from blueprints.auth_blueprint.views import LoginView, RegistrationView, LogoutView
 from blueprints.base_blueprint.views import BaseView, TestPageView, DashboardView
-from flask import Blueprint
 
 
 def register_routes(app):
