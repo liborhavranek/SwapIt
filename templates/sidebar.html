@@ -8,7 +8,7 @@
             {% set is_ancestor = (category.id in ancestor_ids) %}
             {% if category_info.subcategories|length > 0 %}
                 <div class="category-item">
-                    <a href="{{ url_for('index_bp.dashboard', category_id=category.id) }}"
+                    <a href="{{ url_for('base_bp.dashboard', category_id=category.id) }}"
                        class="{% if is_active %}active{% endif %}">
                         <i class="{{ category.icon }}"></i> {{ category.name }}
                     </a>
@@ -20,7 +20,7 @@
                     {% endfor %}
                 </div>
             {% else %}
-                <a href="{{ url_for('index_bp.dashboard', category_id=category.id) }}"
+                <a href="{{ url_for('base_bp.dashboard', category_id=category.id) }}"
                    class="{% if is_active %}active{% endif %}">
                     <i class="{{ category.icon }}"></i> {{ category.name }}
                 </a>

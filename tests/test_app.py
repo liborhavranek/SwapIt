@@ -1,25 +1,22 @@
 import sys
+import time
 import unittest
 from unittest.mock import patch
-
-from app import app, db, generate_csrf_token
+from blueprints.blueprints_reigster import register_routes
+from app import app, db
 
 
 class AppConfigTestCase(unittest.TestCase):
     """Testy pro konfiguraci aplikace."""
 
     def setUp(self):
+        time.sleep(0.1)
         app.config['TESTING'] = True
         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
         app.config['SECRET_KEY'] = 'test_secret_key'
         self.app = app.test_client()
         with app.app_context():
             db.create_all()
-
-    def tearDown(self):
-        with app.app_context():
-            db.session.remove()
-            db.drop_all()
 
     def test_db_is_imported(self):
         from app import db
@@ -81,27 +78,17 @@ class AppConfigTestCase(unittest.TestCase):
             with client.session_transaction() as session:
                 self.assertEqual(session['_csrf_token'], 'existing_token')
 
-    def test_csrf_token_registered_as_jinja_global_key(self):
-        with app.app_context():
-            self.assertIn('csrf_token', app.jinja_env.globals)
-
-    def test_csrf_token_registered_as_jinja_global_value(self):
-        with app.app_context():
-            self.assertEqual(app.jinja_env.globals['csrf_token'], generate_csrf_token)
-
     @patch('flask.Flask.register_blueprint')
-    def test_register_index_blueprint(self, mock_register_blueprint):
-        from app import register_blueprint
-        from blueprints.index_blueprint import index_bp
-        register_blueprint(app)
-        mock_register_blueprint.assert_any_call(index_bp)
-
-    @patch('flask.Flask.register_blueprint')
-    def test_register_auth_blueprint(self, mock_register_blueprint):
-        from app import register_blueprint
-        from blueprints.auth_blueprint import auth_bp
-        register_blueprint(app)
-        mock_register_blueprint.assert_any_call(auth_bp)
+    def test_register_blueprints(self, mock_register_blueprint):
+        register_routes(app)
+        self.assertTrue(mock_register_blueprint.called)
+        expected_blueprints = [
+            ('base_bp', 'base_bp'),
+            ('auth_bp', 'auth_bp'),
+        ]
+        registered_blueprints = [args[0].name for args, kwargs in mock_register_blueprint.call_args_list]
+        for expected_name, blueprint_name in expected_blueprints:
+            self.assertIn(blueprint_name, registered_blueprints, f"Blueprint '{blueprint_name}' nebyl zaregistrován.")
 
     @patch('flask.Flask.register_blueprint')
     def test_register_admin_blueprint(self, mock_register_blueprint):
@@ -116,24 +103,6 @@ class AppConfigTestCase(unittest.TestCase):
         from blueprints.add_product_blueprint import add_product_bp
         register_blueprint(app)
         mock_register_blueprint.assert_any_call(add_product_bp)
-
-# TODO tyto tři testy přesunout k testování login testovat pro každou šablonu, kde je csrf_token
-    def test_no_csrf_token_in_session_initially(self):
-        with self.app as client:
-            with client.session_transaction() as session:
-                self.assertNotIn('_csrf_token', session)
-
-    def test_csrf_token_generated_on_request(self):
-        with self.app as client:
-            client.get('/login')
-            with client.session_transaction() as session:
-                self.assertIn('_csrf_token', session)
-
-    def test_csrf_token_length(self):
-        with self.app as client:
-            client.get('/login')
-            with client.session_transaction() as session:
-                self.assertEqual(len(session['_csrf_token']), 64)
 
 
 if __name__ == '__main__':

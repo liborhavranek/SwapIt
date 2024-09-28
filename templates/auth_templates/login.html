@@ -12,9 +12,7 @@
 </head>
 
 <body>
-
     {% include 'message.html' %}
-
     <section class="registration-section">
         <div class="container">
             <h1 class="swap-text">
@@ -22,15 +20,20 @@
             </h1>
             <h2>Přihlášení</h2>
             <form method="POST" action="{{ url_for('auth_bp.login') }}">
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                {{ form.hidden_tag() }}
                 <div class="mb-3">
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Přihlašovací jméno nebo email">
+                    {{ form.username(class_='form-control', placeholder='Přihlašovací jméno nebo email') }}
+                    {% for error in form.username.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
                 </div>
                 <div class="mb-3">
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Heslo">
+                    {{ form.password(class_='form-control', placeholder='Heslo') }}
+                    {% for error in form.password.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
                 </div>
-                <button type="submit" class="btn btn-primary">Přihlásit se</button>
-                <div class="form-text my-3">Nemáte účet? <a href="{{ url_for('auth_bp.registration') }}">Zaregistrujte se</a></div>
+                {{ form.submit(class_='btn btn-primary') }}
             </form>
         </div>
     </section>
