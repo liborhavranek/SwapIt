@@ -10,3 +10,6 @@ class Image(db.Model):
 
     def __repr__(self):
         return f'<Image {self.image_url} for Product ID {self.product_id}>'
+
+    def is_assigned_to_product(self, product_id):
+        return self.product_id == product_id

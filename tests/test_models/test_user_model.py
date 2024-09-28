@@ -1,10 +1,8 @@
 import time
 import unittest
 from datetime import datetime
-
-from tests.factories.user_factory import create_admin_user, create_regular_user, create_manager_user
-
 from sqlalchemy.exc import IntegrityError
+from tests.factories.user_factory import create_admin_user, create_regular_user, create_manager_user
 
 from extensions import db
 from app import create_app

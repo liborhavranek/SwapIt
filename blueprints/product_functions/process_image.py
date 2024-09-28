@@ -1,10 +1,10 @@
 import os
 import uuid
+from PIL import Image as PILImage
+from werkzeug.utils import secure_filename
 from extensions import db
 from models.image_model import Image
-from werkzeug.utils import secure_filename
 from blueprints.product_functions.allowed_files import allowed_file
-from PIL import Image as PILImage
 
 
 def process_images(images, product_id):

@@ -59,6 +59,3 @@ class LogoutView(MethodView):
         logout_user()
         flash('Byl jste úspěšně odhlášen.', 'success')
         return redirect(url_for('auth_bp.login'))
-
-
-

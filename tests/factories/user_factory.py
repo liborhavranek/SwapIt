@@ -1,8 +1,8 @@
+from faker import Faker
 from datetime import datetime
 from models.user_model import User
 import random
 import string
-from faker import Faker
 
 
 fake = Faker()

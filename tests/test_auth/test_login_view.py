@@ -128,6 +128,5 @@ class TestRegistrationViewTestCase(unittest.TestCase):
             expected_message = 'Nesprávné přihlašovací údaje nebo heslo.'.encode('utf-8')
             self.assertIn(expected_message, login_response.data)
 
-
 if __name__ == '__main__':
     unittest.main()

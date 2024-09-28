@@ -1,6 +1,5 @@
 import os
-import hashlib
-from flask import Flask, session
+from flask import Flask
 from login import login_manager
 
 from flask_socketio import SocketIO

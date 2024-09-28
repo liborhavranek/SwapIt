@@ -3,7 +3,7 @@ from wtforms import ValidationError
 from models.user_model import User
 
 
-def validate_username(form, field):
+def validate_username(_form, field):
     username = field.data
     if not field.data:
         raise ValidationError(f'{field.label.text} je povinné pole.')
@@ -16,7 +16,7 @@ def validate_username(form, field):
         raise ValidationError('Toto uživatelské jméno je již obsazeno. Zvolte jiné.')
 
 
-def validate_email(form, field):
+def validate_email(_form, field):
     email = field.data
     if not field.data:
         raise ValidationError(f'{field.label.text} je povinné pole.')

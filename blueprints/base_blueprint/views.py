@@ -1,5 +1,4 @@
 from flask.views import MethodView
-
 from helpers.product_helpers import get_all_products
 from flask import render_template, request, Response
 from blueprints.admin_blueprint import build_category_tree

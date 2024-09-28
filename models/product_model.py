@@ -1,5 +1,5 @@
-from extensions import db
 from datetime import datetime
+from extensions import db
 
 
 class Product(db.Model):
@@ -37,3 +37,6 @@ class Product(db.Model):
 
     def __repr__(self):
         return f'<Product {self.title}>'
+
+    def get_full_description(self):
+        return f"{self.title} - {self.description}"

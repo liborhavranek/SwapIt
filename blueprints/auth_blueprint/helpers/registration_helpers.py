@@ -24,6 +24,6 @@ def save_user_to_db(user, db):
 
 
 def handle_form_errors(form):
-    for field, errors in form.errors.items():
+    for _field, errors in form.errors.items():
         for error in errors:
             flash(f'{error}', 'danger')

@@ -8,6 +8,12 @@ class Role:
     USER = 'user'
     MANAGER = 'manager'
 
+    def get_all_roles(self):
+        return [self.ADMIN, self.USER, self.MANAGER]
+
+    def non_admin_roles(self):
+        return [self.USER, self.MANAGER]
+
 
 def role_required(role):
     def decorator(f):

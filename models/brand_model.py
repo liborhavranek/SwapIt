@@ -1,6 +1,7 @@
 from sqlalchemy.orm import relationship, backref
 from extensions import db
 
+
 class Brand(db.Model):
     __tablename__ = 'brands'
 

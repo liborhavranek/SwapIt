@@ -152,10 +152,5 @@ class DashboardTemplateLinkTestCase(BaseTestCase):
         self.assertIn('data-bs-toggle="collapse" href="#rating"', html)
 
 
-class DashboardTemplateContentTestCase(BaseTestCase):
-    """Dashboard není dodělaná, proto ještě nebudou testy na content """
-    pass
-
-
 if __name__ == '__main__':
     unittest.main()

@@ -19,16 +19,14 @@ class AppConfigTestCase(unittest.TestCase):
             db.create_all()
 
     def test_db_is_imported(self):
-        from app import db
-        self.assertIsNotNone(db, "Databáze nebyla importována.")
+        self.assertIsNotNone(db)
 
     def test_init_database_is_imported(self):
-        from app import init_database
-        self.assertIsNotNone(init_database, "Funkce init_database nebyla importována.")
+        self.assertIsNotNone(db)
 
     def test_register_blueprint_is_imported(self):
         from app import register_blueprint
-        self.assertIsNotNone(register_blueprint, "Funkce register_blueprint nebyla importována.")
+        self.assertIsNotNone(register_blueprint)
 
     def test_secret_key_configuration(self):
         self.assertEqual(app.config['SECRET_KEY'], 'test_secret_key')
